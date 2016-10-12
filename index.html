@@ -9,27 +9,35 @@
       <script type="text/javascript" src="build/js/app.js"></script>
 
     </head>
-    <title>Alarm Clock</title>
+    <title>Telephoto</title>
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <h3>Your Image</h3>
-          <img id="inputImage" src="#" alt="" />
+      <h1>Welcome to Telephoto</h1>
+      <div class="col-sm-3">
+        <div class="imgBox">
+          <h3>Your Image</h3>
+          <img id="inputImage" src="#" alt=""/>
+        </div>
+
+        <div class="row">
+            <span id="tag1"></span>
+            <span id="tag2"></span>
+            <span id="tag3"></span>
+            <span id="tag4"></span>
+            <span id="tag5"></span>
+        </div>
       </div>
-      <div class="row">
-        <span id="tag1"></span>
-        <span id="tag2"></span>
-        <span id="tag3"></span>
-        <span id="tag4"></span>
-        <span id="tag5"></span>
+      <div class="col-sm-8">
+        <div class="row resultImages">
+        </div>
       </div>
-      <div class="row resultImages">
-      </div>
+    </div>
+    <div class="navbar">
       <form id="submitUrl">
         <label for="url">Enter a Url of an Image:</label>
         <input type ="text" id="url">
-        <button type="button" name="button" id="submitButton">Submit Url</button>
+        <button class="btn btn-success" type="button" name="button" id="submitButton">Submit Url</button>
       </form>
     </div>
   </body>

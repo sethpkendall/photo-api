@@ -1,5 +1,36 @@
+.container{
+  margin-top: 100px
+}
+
+.navbar{
+  position: fixed;
+  width: 100%;
+  background: black;
+  top: 0;
+  left: 0;
+}
+
 .resultImage{
   max-width: 100px;
   height: 100px;
   overflow: hidden;
+}
+.clicked{
+  border-style: inset;
+  border: 6px solid red;
+}
+.col-sm-3{
+  background: beige;
+  height: 900px;
+}
+.col-sm-8{
+  height: 900px;
+  overflow: scroll;
+}
+.imgBox{
+  width: 100%;
+  border: 1px solid black;
+}
+.imgBox img{
+  max-width: 100%;
 }

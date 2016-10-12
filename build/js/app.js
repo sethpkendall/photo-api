@@ -3923,6 +3923,7 @@ $(function(){
               var url = $(this).attr("src");
               console.log(url);
               getTags(url);
+              $(this).addClass('clicked');
             });
           });
       else
