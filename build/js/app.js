@@ -3883,12 +3883,12 @@ app.models.initModel('aaa03c23b3724a16a56b629203edc62c').then(function(model) {
 $(function(){
   $("#submitButton").click(function(){
     var url = $("#url").val();
+    $("#inputImage").attr("src", url);
     getTags(url);
   });
 
   var getTags = function(url){
     console.log(url);
-    $("#inputImage").attr("src", url);
     app.models.predict(Clarifai.GENERAL_MODEL, url).then(
       function(response) {
         console.log(response);
@@ -3921,9 +3921,11 @@ $(function(){
             $(".resultImages").append("<img class='resultImage' src='"+hit.webformatURL+"'>");
             $("img").last().click(function(){
               var url = $(this).attr("src");
+              $(".imgBox").append("<img  src='"+url+"'>");
               console.log(url);
               getTags(url);
               $(this).addClass('clicked');
+              $("#resultImages").animate({ scrollTop: $('#resultImages').prop("scrollHeight")}, 1000)
             });
           });
       else
