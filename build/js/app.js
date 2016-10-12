@@ -3860,28 +3860,75 @@ var app = new Clarifai.App(
   'LzXEFU2gsfodIIjTO5YqNVqUvFRmJUkFYrep89bb',
   'VgVrrKfTFrFFVDTFVqD0EwDdHnqtku-q6IAcb1KD'
 );
+  var API_KEY = '3508192-a3f9ba87aae26460abf2d2130';
 
+function updateModel(model) {
+  model.deleteConcepts({"id": "no person"}).then(
+    function(response) {
+      // do something with response
+    },
+    function(err) {
+      // there was an error
+    }
+  );
+}
 
+app.models.initModel('aaa03c23b3724a16a56b629203edc62c').then(function(model) {
+  updateModel,
+  function(err) {
+    // there was an error
+  }
+});
 
 $(function(){
-  $("#submit_button").click(function(){
+  $("#submitButton").click(function(){
     var url = $("#url").val();
+    getTags(url);
+  });
+
+  var getTags = function(url){
     console.log(url);
     $("#inputImage").attr("src", url);
     app.models.predict(Clarifai.GENERAL_MODEL, url).then(
       function(response) {
         console.log(response);
-        $("#tag1").text(response.data.outputs[0].data.concepts[0].name);
-        $("#tag2").text(response.data.outputs[0].data.concepts[1].name);
-        $("#tag3").text(response.data.outputs[0].data.concepts[2].name);
-        $("#tag4").text(response.data.outputs[0].data.concepts[3].name);
-        $("#tag5").text(response.data.outputs[0].data.concepts[4].name);
+        var tag1 = response.data.outputs[0].data.concepts[0].name;
+        var tag2 = response.data.outputs[0].data.concepts[1].name;
+        var tag3 = response.data.outputs[0].data.concepts[2].name;
+        var tag4 = response.data.outputs[0].data.concepts[3].name;
+        var tag5 = response.data.outputs[0].data.concepts[4].name;
+        $("#tag1").text(tag1);
+        $("#tag2").text(tag2);
+        $("#tag3").text(tag3);
+        $("#tag4").text(tag4);
+        $("#tag5").text(tag5);
+        var tagsToString = tag1 + " " + tag2 + " "+tag3;
+        var tagsToString2 = tagsToString.replace("no person", "");
+        likeImages(tagsToString2);
       },
       function(err) {
         console.error(err);
       }
     );
-  });
+  };
+
+
+  var likeImages = function(imgTag){
+    var URL = "https://pixabay.com/api/?key="+API_KEY+"&q="+encodeURIComponent(imgTag);
+    $.getJSON(URL, function(data){
+      if (parseInt(data.totalHits) > 0)
+          $.each(data.hits, function(i, hit){
+            $(".resultImages").append("<img class='resultImage' src='"+hit.webformatURL+"'>");
+            $("img").last().click(function(){
+              var url = $(this).attr("src");
+              console.log(url);
+              getTags(url);
+            });
+          });
+      else
+          console.log('No hits');
+    });
+  };
 });
 
 },{"clarifai":28}]},{},[32]);
