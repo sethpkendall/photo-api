@@ -3873,12 +3873,12 @@ function updateModel(model) {
   );
 }
 
-app.models.initModel('aaa03c23b3724a16a56b629203edc62c').then(function(model) {
-  updateModel,
-  function(err) {
-    // there was an error
-  }
-});
+// app.models.initModel('aaa03c23b3724a16a56b629203edc62c').then(function(model) {
+//   updateModel,
+//   function(err) {
+//     // there was an error
+//   }
+// });
 
 $(function(){
   $("#submitButton").click(function(){
@@ -3916,18 +3916,21 @@ $(function(){
   var likeImages = function(imgTag){
     var URL = "https://pixabay.com/api/?key="+API_KEY+"&q="+encodeURIComponent(imgTag);
     $.getJSON(URL, function(data){
-      if (parseInt(data.totalHits) > 0)
-          $.each(data.hits, function(i, hit){
-            $(".resultImages").append("<img class='resultImage' src='"+hit.webformatURL+"'>");
-            $("img").last().click(function(){
-              var url = $(this).attr("src");
-              $(".imgBox").append("<img  src='"+url+"'>");
-              console.log(url);
-              getTags(url);
-              $(this).addClass('clicked');
-              $("#resultImages").animate({ scrollTop: $('#resultImages').prop("scrollHeight")}, 1000)
-            });
+      if (parseInt(data.totalHits) > 0){
+        $.each(data.hits, function(i, hit){
+          console.log("hello");
+          $(".resultImages").append("<img class='resultImage' src='"+hit.previewURL+"'>");
+          $("img").last().click(function(){
+            var url = $(this).attr("src");
+            $(".imgBox").append("<img  src='"+url+"'>");
+            console.log(url);
+            getTags(url);
+            $(this).addClass('clicked');
+            $("#resultImages").animate({ scrollTop: $('#resultImages').prop("scrollHeight")}, 1000);
           });
+        });
+      }
+
       else
           console.log('No hits');
     });
