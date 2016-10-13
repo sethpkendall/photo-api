@@ -3930,6 +3930,7 @@ $(function(){
         var tag3 = response.data.outputs[0].data.concepts[2].name;
         var tag4 = response.data.outputs[0].data.concepts[3].name;
         var tag5 = response.data.outputs[0].data.concepts[4].name;
+        var tags = [tag1,tag2,tag3,tag4,tag5];
         $("#tag1").text(tag1);
         $("#tag2").text(tag2);
         $("#tag3").text(tag3);
@@ -3939,11 +3940,17 @@ $(function(){
         var tagsToString2 = tagsToString.replace("no person", "");
         // other tags to remove
         // invertebrate
-        likeImages(tagsToString2);
+        if (tags.includes("pizza")){
+          alert("You Win!");
+        } else {
+          likeImages(tagsToString2);
+        }
+
       },
       function(err) {
         console.error(err);
       }
+
     );
   };
 
