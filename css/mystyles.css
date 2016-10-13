@@ -12,7 +12,7 @@
 }
 
 .resultImage{
-  max-width: 100px;
+  width: 100px;
   height: 100px;
   overflow: hidden;
 }
@@ -20,18 +20,27 @@
   border-style: inset;
   border: 6px solid red;
 }
-.col-sm-3{
-  background: beige;
-  height: 900px;
-}
-.col-sm-8{
+.resultImages{
   height: 900px;
   overflow: scroll;
 }
 .imgBox{
   width: 100%;
-  border: 1px solid black;
 }
-.imgBox img{
-  max-width: 100%;
+.pathBox img{
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+.winBox{
+  margin-top: 5%;
+}
+.pathBox{
+  margin-top: 5%;
+}
+.title{
+  text-align: center;
+  font-size: 40px;
+  margin-top: 70px;
+  font-family: 'Bungee Inline', cursive;
 }
