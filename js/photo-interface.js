@@ -52,13 +52,13 @@ $(function(){
   }
   start();
 
-// var playerWins = function(url, tag){
-//   $(".winBox").append("<img src='"+url+"'>");
-//   $(".winBox").append("<span class='winTag'>"+tag +"</span>");
-//   score = (20-clicks)* countDown;
-//   $(".scoreBox").text(score);
-//   //add player name in future
-// }
+var playerWins = function(url, tag){
+  $(".winBox").append("<img src='"+url+"'>");
+  $(".winBox").append("<span class='winTag'>"+tag +"</span>");
+  score = (20-clicks)* countDown;
+  $(".scoreBox").text(score);
+  //add player name in future
+}
 
 
 
@@ -68,7 +68,7 @@ $(function(){
     $("#inputImage").attr("src", url);
     getTags(url);
   });
-  var getTags = function(url){
+  var getTags = function(url, bigUrl){
     displayClicks();
     app.models.predict(Clarifai.GENERAL_MODEL, url).then(
       function(response) {
@@ -88,11 +88,14 @@ $(function(){
         var tagsToString2 = tagsToString.replace("no person", "");
         // other tags to remove
         // invertebrate
-        if (tags.includes("pizza")){
-          alert("You Win!");
-        } else {
-          likeImages(tagsToString2);
-        }
+          if (tags.includes("pizza")){
+            playerWins(bigUrl, "pizza");
+            alert("You Win!");
+          } else {
+            likeImages(tagsToString2);
+          }
+
+
 
       },
       function(err) {
@@ -108,7 +111,7 @@ $(function(){
     $.getJSON(URL, function(data){
       if (parseInt(data.totalHits) > 0){
         $.each(data.hits, function(i, hit){
-          console.log("hello");
+          console.log(hit);
           $(".resultImages").append("<a><img class='resultImage' src='"+hit.previewURL+"'>");
           var scrollDown = function(){
             $("div.col-sm-8").scrollTop(90000);
@@ -116,9 +119,10 @@ $(function(){
           var scrollTimer = setTimeout(scrollDown, 1000);
           $("img").last().click(function(){
             var url = $(this).attr("src");
+            var bigUrl = hit.webformatURL;
             $(".imgBox").append("<img  src='"+url+"'>");
-            console.log(url);
-            getTags(url);
+            console.log(bigUrl);
+            getTags(url, bigUrl);
             $(this).addClass('clicked');
 
 
