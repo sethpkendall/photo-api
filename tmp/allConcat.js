@@ -15,26 +15,15 @@ function updateModel(model) {
     }
   );
 }
-
+var winners = [];
 // app.models.initModel('aaa03c23b3724a16a56b629203edc62c').then(function(model) {
 //   updateModel,
 //   function(err) {
 //     // there was an error
 //   }
 // });
-
+var stuff = "stuff";
 $(function(){
-  var test1 = "Chris";
-  var test2 = "Seth";
-  if (typeof(Storage) !== "undefined") {
-    sessionStorage.name1 = test1 ;
-    sessionStorage.name2 = test2 ;
-    console.log(sessionStorage.name1);
-  } else {
-      console.log("Sorry! No Web Storage support..");
-  }
-  var nameArray = [sessionStorage.name1, sessionStorage.name2];
-  console.log(nameArray);
 
   var destination = "";
   var score = 0;
@@ -42,10 +31,19 @@ $(function(){
   var countDown = 120;
   var displayTimer;
 
+  var updateScores = function(){
+    alert("update ran");
+    $(".scoresList").empty();
+    // winners.sort(keysrt('score'));
+    winners.forEach(function(score){
+      alert("foreach");
+      $('.scoresList').append("<li>"+score.name + " " + score.score+"</li>");
+    });
+  }
   var displayClicks = function(){
     clicks +=1;
     $("#clicks").text(clicks);
-    if(clicks === 2){
+    if(clicks === 20){
       alert("game over");
       clicks = 0;
       countDown = 120;
@@ -75,12 +73,17 @@ $(function(){
 var playerWins = function(url, tag){
 $(".winBox").css("background-image", "url("+ url +")");
   score = (20-clicks)* countDown;
-  $(".scoreBox").text(score);
+  var playerName = prompt("You Win! Enter your name:");
+  var playerResult = {"score":score, "name":playerName};
+  winners.push(playerResult);
+  console.log(winners);
+  $('.startButton').toggle();
+
   //add player name in future
 };
 
 
-var startingWords = ["rodent", "pizza", "tree", "boat", "salmon", "flower", "science", "sunset"];
+var startingWords = ["rodent", "nature", "bird", "beach""pizza", "tree", "boat", "waterfall", "flower", "sunset", "hamburger", "car", "beautiful", "hillary", "leader", "snail", "math", "mesh", "soccer", "crowd", "proud", "happy", "eggs", "russia"];
 
   $(".startButton").click(function(){
     start();
@@ -123,12 +126,12 @@ var startingWords = ["rodent", "pizza", "tree", "boat", "salmon", "flower", "sci
         $("#tag4").text(tag4);
         $("#tag5").text(tag5);
         var tagsToString = tag1 + " " + tag2 + " "+tag3;
-        var tagsToString2 = tagsToString.replace(/no person|invertebrate|desktop|epicure|shelf/gi, "");
+        var tagsToString2 = tagsToString.replace(/no person|invertebrate|desktop|epicure|shelf|vector|illustration/gi, "");
         // other tags to remove
         // invertebrate, desktop, epicure,
           if (tags.includes(destination)){
             playerWins(bigUrl, destination);
-            alert("You Win!");
+            updateScores();
           } else {
             likeImages(tagsToString2);
           }
