@@ -35,20 +35,19 @@ body {
   overflow-x: hidden;
   overflow-y: hidden;
 }
-/*.imgBox{
-  width: 100%;
-}*/
+
 .pathBox img{
   width: 100px;
   height: 100px;
   overflow: hidden;
 }
-/*.winBox{
-  margin-top: 5%;
-}*/
-/*.pathBox{
-  margin-top: 5%;
-}*/
+.winBox, .imgBox{
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .title{
   text-align: center;
   font-size: 40px;
@@ -59,7 +58,7 @@ body {
   text-decoration: underline;
   font-family: 'Bungee Inline', cursive;
 }
-.endTag{
+.startTag, .endTag{
   margin: auto 0;
   font-size: 3em;
   font-family: 'Bungee Inline', cursive;

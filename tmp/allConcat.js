@@ -25,8 +25,6 @@ function updateModel(model) {
 
 $(function(){
   var destination = "";
-
-
   var score = 0;
   var clicks = 0;
   var countDown = 120;
@@ -52,14 +50,14 @@ $(function(){
   };
   var start = function(){
     displayTimer = setInterval(updateTimer, 1000);
-    // $(".pathBox").empty();
-    // $(".resultImages").empty();
+    $(".pathBox").empty();
+    $(".resultImages").empty();
 
   };
 
 
 var playerWins = function(url, tag){
-  $(".winBox").append("<img src='"+url+"'>");
+$(".winBox").css("background-image", "url("+ url +")");
   score = (20-clicks)* countDown;
   $(".scoreBox").text(score);
   //add player name in future
@@ -89,7 +87,7 @@ var startingWords = ["rodent", "pizza", "city", "tree", "boat", "salmon", "flowe
     $.getJSON(URL, function(data){
       var testVar = data.hits[0].webformatURL;
       console.log(testVar);
-      $("#inputImage").append("<img src='" + testVar + "'>");
+      $(".imgBox").css("background-image", "url("+ testVar +")");
       getTags(testVar);
     });
 
