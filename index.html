@@ -12,46 +12,47 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="title">Welcome to Telephoto</h1>
-      <div class="row">
-        <div class="col-sm-8 pathBox">
-          <div class="imgBox">
-            <h3>Start image:</h3>
-            <img id="inputImage" src="#" alt=""/>
-          </div>
+      <h1 class="title">Telephoto Game</h1>
+      <div class="row top">
+        <div class="col-sm-2 imgBox">
+          <span id="inputImage"></span>
         </div>
-        <div class="col-sm-4 winBox">
-          
+        <div class="col-sm-8 pathBox">
+
+        </div>
+        <div class="col-sm-2 winBox">
+          <span class='endTag'></span>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-offset-5 col-sm-6">
           <div class="row">
-            <span id="tag1">1</span>
-            <span id="tag2">2</span>
-            <span id="tag3">3</span>
-            <span id="tag4">4</span>
-            <span id="tag5">5</span>
+            <span id="tag1"></span>
+            <span id="tag2"></span>
+            <span id="tag3"></span>
+            <span id="tag4"></span>
+            <span id="tag5"></span>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-2">
-            <h1>Stats</h1>
+            <h1 class="sectionHead">Stats</h1>
           <div class="timerBox">
-            <h1 > Timer: <span id="timer"></span>  </h1>
+            <h3 class="sectionHead"> Timer</h3><h5><span id="timer"></span></h5>
           </div>
           <div class="clickBox">
-            <h1><span id="clicks"></span> clicks</h1>
+            <h3 class="sectionHead">Clicks</h3><h5><span id="clicks"></span> </h5>
+          </div>
+          <div class="startButton">
+            <button type="button" class="btn btn-lg btn-success"name="button">Start A Game</button>
           </div>
         </div>
         <div class="col-sm-8">
-
-          <div class="row resultImages">
-          </div>
+          <div class="row resultImages"></div>
         </div>
         <div class="col-sm-2">
-          <h1>Hi</h1>
+          <h3 class="sectionHead">High scores</h3>
           <h1 class="scoreBox">   </h1>
         </div>
       </div>

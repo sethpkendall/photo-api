@@ -3881,9 +3881,12 @@ function updateModel(model) {
 // });
 
 $(function(){
+  var destination = "";
+
+
   var score = 0;
   var clicks = 0;
-  var countDown = 60;
+  var countDown = 120;
   var displayTimer;
 
   var displayClicks = function(){
@@ -3892,7 +3895,7 @@ $(function(){
     if(clicks === 20){
       alert("game over");
     }
-  }
+  };
 
   ////timer functions
   var updateTimer = function(){
@@ -3903,27 +3906,50 @@ $(function(){
       countDown -= 1;
       $("#timer").text(countDown + " seconds");
     }
-  }
+  };
   var start = function(){
     displayTimer = setInterval(updateTimer, 1000);
-  }
-  start();
+    // $(".pathBox").empty();
+    // $(".resultImages").empty();
+
+  };
+
 
 var playerWins = function(url, tag){
   $(".winBox").append("<img src='"+url+"'>");
-  $(".winBox").append("<span class='winTag'>"+tag +"</span>");
   score = (20-clicks)* countDown;
   $(".scoreBox").text(score);
   //add player name in future
-}
+};
+
+
+var startingWords = ["rodent", "pizza", "city", "tree", "boat", "salmon", "flower", "science", "sunset"];
 
 
 
 
-  $("#submitButton").click(function(){
-    var url = $("#url").val();
-    $("#inputImage").attr("src", url);
-    getTags(url);
+  $(".startButton").click(function(){
+    start();
+    var random1 = Math.floor(Math.random() * (startingWords.length ));
+    var random2 = Math.floor(Math.random() * (startingWords.length));
+    var startTag = startingWords[random1];
+    while(random1 === random2){
+      random2 = Math.floor(Math.random() * (startingWords.length));
+    }
+    var endTag = startingWords[random2];
+    destination = endTag;
+    console.log(random1 +" "+ random2 + startTag + endTag);
+    $(".endTag").text('->'+ endTag);
+
+
+    var URL = "https://pixabay.com/api/?key="+API_KEY+"&q="+encodeURIComponent(startTag);
+    $.getJSON(URL, function(data){
+      var testVar = data.hits[0].webformatURL;
+      console.log(testVar);
+      $("#inputImage").append("<img src='" + testVar + "'>");
+      getTags(testVar);
+    });
+
   });
   var getTags = function(url, bigUrl){
     displayClicks();
@@ -3944,9 +3970,9 @@ var playerWins = function(url, tag){
         var tagsToString = tag1 + " " + tag2 + " "+tag3;
         var tagsToString2 = tagsToString.replace("no person", "");
         // other tags to remove
-        // invertebrate
-          if (tags.includes("pizza")){
-            playerWins(bigUrl, "pizza");
+        // invertebrate, desktop, epicure,
+          if (tags.includes(destination)){
+            playerWins(bigUrl, destination);
             alert("You Win!");
           } else {
             likeImages(tagsToString2);
@@ -3971,25 +3997,21 @@ var playerWins = function(url, tag){
           console.log(hit);
           $(".resultImages").append("<a><img class='resultImage' src='"+hit.previewURL+"'>");
           var scrollDown = function(){
-            $("div.col-sm-8").scrollTop(90000);
-          }
+            $("div.resultImages").scrollTop(90000);
+          };
           var scrollTimer = setTimeout(scrollDown, 1000);
           $("img").last().click(function(){
             var url = $(this).attr("src");
             var bigUrl = hit.webformatURL;
-            $(".imgBox").append("<img  src='"+url+"'>");
+            $(".pathBox").append("<img  src='"+url+"'>");
             console.log(bigUrl);
             getTags(url, bigUrl);
             $(this).addClass('clicked');
-
-
-
           });
         });
+      } else {
+        console.log('No hits');
       }
-
-      else
-          console.log('No hits');
     });
   };
 });
