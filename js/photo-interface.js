@@ -62,14 +62,21 @@ $(function(){
       if (parseInt(data.totalHits) > 0){
         $.each(data.hits, function(i, hit){
           console.log("hello");
-          $(".resultImages").append("<img class='resultImage' src='"+hit.previewURL+"'>");
+          $(".resultImages").append("<a><img class='resultImage' src='"+hit.previewURL+"'>");
+          var scrollDown = function(){
+            $("div.col-sm-8").scrollTop(900);
+            alert("hello, thanks for waiting");
+          }
+          var scrollTimer = setTimeout(scrollDown, 1000);
           $("img").last().click(function(){
             var url = $(this).attr("src");
             $(".imgBox").append("<img  src='"+url+"'>");
             console.log(url);
             getTags(url);
             $(this).addClass('clicked');
-            $("#resultImages").animate({ scrollTop: $('#resultImages').prop("scrollHeight")}, 1000);
+
+
+
           });
         });
       }
