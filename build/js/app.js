@@ -3881,6 +3881,39 @@ function updateModel(model) {
 // });
 
 $(function(){
+  var score = 0;
+  var clicks = 0;
+  var countDown = 10;
+  var displayTimer;
+
+  var displayClicks = function(){
+    clicks +=1;
+    $("#clicks").text(clicks);
+    if(clicks === 20){
+      alert("game over");
+    }
+  }
+
+
+
+
+  ////timer functions
+  var updateTimer = function(){
+    if(countDown === 0){
+      clearInterval(displayTimer);
+    }
+    else{
+      countDown -= 1;
+      $("#timer").text(countDown + " seconds");
+    }
+  }
+  var start = function(){
+    displayTimer = setInterval(updateTimer, 1000);
+  }
+  start();
+
+
+
   $("#submitButton").click(function(){
     var url = $("#url").val();
     $("#inputImage").attr("src", url);
@@ -3888,7 +3921,7 @@ $(function(){
   });
 
   var getTags = function(url){
-    console.log(url);
+    displayClicks();
     app.models.predict(Clarifai.GENERAL_MODEL, url).then(
       function(response) {
         console.log(response);
@@ -3904,6 +3937,8 @@ $(function(){
         $("#tag5").text(tag5);
         var tagsToString = tag1 + " " + tag2 + " "+tag3;
         var tagsToString2 = tagsToString.replace("no person", "");
+        // other tags to remove
+        // invertebrate
         likeImages(tagsToString2);
       },
       function(err) {
@@ -3921,8 +3956,7 @@ $(function(){
           console.log("hello");
           $(".resultImages").append("<a><img class='resultImage' src='"+hit.previewURL+"'>");
           var scrollDown = function(){
-            $("div.col-sm-8").scrollTop(900);
-            alert("hello, thanks for waiting");
+            $("div.col-sm-8").scrollTop(90000);
           }
           var scrollTimer = setTimeout(scrollDown, 1000);
           $("img").last().click(function(){

@@ -4,7 +4,7 @@
     <head>
       <link rel="stylesheet" href="build/css/vendor.css">
       <link rel="stylesheet" href="css/mystyles.css">
-  
+
 
       <script src="build/js/vendor.min.js"></script>
       <script type="text/javascript" src="build/js/app.js"></script>
@@ -15,19 +15,29 @@
   <body>
     <div class="container">
       <h1>Welcome to Telephoto</h1>
-      <div class="col-sm-3">
-        <div class="imgBox">
-          <h3>Your Image</h3>
-          <img id="inputImage" src="#" alt=""/>
-        </div>
-
-        <div class="row">
+        <div class="col-sm-offset-5 col-sm-6">
+          <div class="row">
             <span id="tag1"></span>
             <span id="tag2"></span>
             <span id="tag3"></span>
             <span id="tag4"></span>
             <span id="tag5"></span>
+          </div>
         </div>
+      <div class="col-sm-3">
+        <div class="timerBox">
+          <p > Timer: <span id="timer"></span>  </p>
+        </div>
+        <div class="clickBox">
+          <p><span id="clicks"></span> clicks</p>
+
+        </div>
+        <div class="imgBox">
+          <h3>Your Image</h3>
+          <img id="inputImage" src="#" alt=""/>
+        </div>
+
+
       </div>
       <div class="col-sm-8">
         <div class="row resultImages">
