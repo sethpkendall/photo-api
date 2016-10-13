@@ -26,7 +26,7 @@ function updateModel(model) {
 $(function(){
   var score = 0;
   var clicks = 0;
-  var countDown = 10;
+  var countDown = 60;
   var displayTimer;
 
   var displayClicks = function(){
@@ -36,9 +36,6 @@ $(function(){
       alert("game over");
     }
   }
-
-
-
 
   ////timer functions
   var updateTimer = function(){
@@ -55,6 +52,11 @@ $(function(){
   }
   start();
 
+var playerWins = function(){
+  $("#winBox").
+}
+
+
 
 
   $("#submitButton").click(function(){
@@ -62,7 +64,6 @@ $(function(){
     $("#inputImage").attr("src", url);
     getTags(url);
   });
-
   var getTags = function(url){
     displayClicks();
     app.models.predict(Clarifai.GENERAL_MODEL, url).then(

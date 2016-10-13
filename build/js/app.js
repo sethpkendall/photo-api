@@ -3883,7 +3883,7 @@ function updateModel(model) {
 $(function(){
   var score = 0;
   var clicks = 0;
-  var countDown = 10;
+  var countDown = 60;
   var displayTimer;
 
   var displayClicks = function(){
@@ -3893,9 +3893,6 @@ $(function(){
       alert("game over");
     }
   }
-
-
-
 
   ////timer functions
   var updateTimer = function(){

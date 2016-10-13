@@ -10,7 +10,10 @@
   top: 0;
   left: 0;
 }
-
+.container{
+  width: 100%;
+  /*background: yellow;*/
+}
 .resultImage{
   width: 100px;
   height: 100px;
