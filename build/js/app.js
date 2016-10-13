@@ -3881,6 +3881,18 @@ function updateModel(model) {
 // });
 
 $(function(){
+  var test1 = "Chris";
+  var test2 = "Seth";
+  if (typeof(Storage) !== "undefined") {
+    sessionStorage.name1 = test1 ;
+    sessionStorage.name2 = test2 ;
+    console.log(sessionStorage.name1);
+  } else {
+      console.log("Sorry! No Web Storage support..");
+  }
+  var nameArray = [sessionStorage.name1, sessionStorage.name2];
+  console.log(nameArray);
+
   var destination = "";
   var score = 0;
   var clicks = 0;
@@ -3890,8 +3902,12 @@ $(function(){
   var displayClicks = function(){
     clicks +=1;
     $("#clicks").text(clicks);
-    if(clicks === 20){
+    if(clicks === 2){
       alert("game over");
+      clicks = 0;
+      countDown = 120;
+      clearInterval(displayTimer);
+      $('.startButton').toggle();
     }
   };
 
@@ -3921,13 +3937,11 @@ $(".winBox").css("background-image", "url("+ url +")");
 };
 
 
-var startingWords = ["rodent", "pizza", "city", "tree", "boat", "salmon", "flower", "science", "sunset"];
-
-
-
+var startingWords = ["rodent", "pizza", "tree", "boat", "salmon", "flower", "science", "sunset"];
 
   $(".startButton").click(function(){
     start();
+    $('.startButton').toggle();
     var random1 = Math.floor(Math.random() * (startingWords.length ));
     var random2 = Math.floor(Math.random() * (startingWords.length));
     var startTag = startingWords[random1];
@@ -3966,7 +3980,7 @@ var startingWords = ["rodent", "pizza", "city", "tree", "boat", "salmon", "flowe
         $("#tag4").text(tag4);
         $("#tag5").text(tag5);
         var tagsToString = tag1 + " " + tag2 + " "+tag3;
-        var tagsToString2 = tagsToString.replace("no person", "");
+        var tagsToString2 = tagsToString.replace(/no person|invertebrate|desktop|epicure|shelf/gi, "");
         // other tags to remove
         // invertebrate, desktop, epicure,
           if (tags.includes(destination)){
@@ -3975,17 +3989,12 @@ var startingWords = ["rodent", "pizza", "city", "tree", "boat", "salmon", "flowe
           } else {
             likeImages(tagsToString2);
           }
-
-
-
       },
       function(err) {
         console.error(err);
       }
-
     );
   };
-
 
   var likeImages = function(imgTag){
     var URL = "https://pixabay.com/api/?key="+API_KEY+"&q="+encodeURIComponent(imgTag);
