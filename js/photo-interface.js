@@ -89,7 +89,7 @@ $(function(){
     var startTag = startingWords[random1];
     var endTag = startingWords[random2];
     destination = endTag;
-    console.log(random1 +" "+ random2 + startTag + endTag);
+    // console.log(random1 +" "+ random2 + startTag + endTag);
     $(".endTag").text('->'+ endTag);
 
     //Fetch initial photo
@@ -134,7 +134,6 @@ $(function(){
   var likeImages = function(imgTag){
     var URL = "https://pixabay.com/api/?key="+API_KEY+"&q="+encodeURIComponent(imgTag);
     $.getJSON(URL, function(data){
-      console.log(data);
       if (parseInt(data.totalHits) > 0){
         $.each(data.hits, function(i, hit){
           $(".resultImages").append("<a><img class='resultImage' src='"+hit.previewURL+"'>");

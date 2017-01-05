@@ -14,6 +14,9 @@ _This program is a game based upon the kids game Telephone. Users try to get fro
 * _Navigate to the project directory in a terminal program._
 * _Type "gulp serve"._
 * _Program will open in a browser window. Click "Start" to play._
+* _Navigate to the project directory in a terminal program._
+* **OR**
+* _Navigate in browser to https://sethpkendall.github.io/photo-api/ to view the github pages version._
 
 ## Licensing
 
