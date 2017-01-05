@@ -62,10 +62,6 @@ $(function(){
   var displayClicks = function(){
     clicks +=1;
     $("#clicks").text(clicks);
-    if(clicks === 15){
-      restartGame();
-      alert("Click Limt Reached! Game Over.");
-    }
   };
 
   var playerWins = function(url, tag){
@@ -121,6 +117,9 @@ $(function(){
             playerWins(bigUrl, destination);
             updateScores();
             restartGame();
+          } else if(clicks === 15){
+            restartGame();
+            alert("Click Limt Reached! Game Over.");
           } else {
             likeImages(tagsToString2);
           }
