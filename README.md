@@ -18,6 +18,9 @@ _This program is a game based upon the kids game Telephone. Users try to get fro
 * **OR**
 * _Navigate in browser to https://sethpkendall.github.io/photo-api/ to view the github pages version._
 
+## Contact Information
+* Contact me at sethpkendall@gmail.com
+
 ## Licensing
 
 *This product can be used in accordance with the provisions under its MIT license.*
