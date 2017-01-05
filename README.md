@@ -1,6 +1,6 @@
 
 # _Telephoto Game_
-###_Epicodus Code Review for week 4, 10.13.2016_
+###_jQuery API game , 10.13.2016_
 
 #### By _Seth Kendall_
 
